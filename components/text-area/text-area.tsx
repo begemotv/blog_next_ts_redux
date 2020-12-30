@@ -4,12 +4,19 @@ import styled from 'styled-components';
 interface TextAreaProps {
     onChange: (evt: ChangeEvent<HTMLTextAreaElement>) => void;
     value: string;
+    isComment?: boolean;
 }
 
-const TextArea: React.FC<TextAreaProps> = ({ onChange, value }) => {
+const TextArea: React.FC<TextAreaProps> = ({ onChange, value, isComment }) => {
     return (
         <div>
-            <StyledTextArea onChange={onChange} value={value} name="body" id="body" placeholder={`Please write here`} />
+            <StyledTextArea
+                onChange={(evt) => onChange(evt)}
+                value={value}
+                name="body"
+                id="body"
+                placeholder={isComment ? `Please write here (5-280 symbols)` : `Please write here`}
+            />
         </div>
     );
 };

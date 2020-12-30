@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 interface ButtonProps {
     text: string;
+    isValid: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ text }) => {
-    return <StyledButton>{text}</StyledButton>;
+const Button: React.FC<ButtonProps> = ({ text, isValid }) => {
+    return <StyledButton disabled={!isValid}>{text}</StyledButton>;
 };
 
 const StyledButton = styled.button`
@@ -24,6 +25,9 @@ const StyledButton = styled.button`
     :hover {
         background-color: #f28caf;
         transition: background-color 200ms linear;
+    }
+    :disabled {
+        background-color: gray;
     }
 `;
 

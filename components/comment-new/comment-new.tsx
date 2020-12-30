@@ -6,7 +6,9 @@ import Button from '../button/button';
 import TextArea from '../text-area/text-area';
 import { uploadCommentThunk } from '../../store/api-actions';
 import { useRouter } from 'next/router';
-import { AppRoute } from '../../const';
+import { AppRoute, TextLength } from '../../const';
+
+const { MIN, MAX_COMMENT } = TextLength;
 
 interface CommentNewProps {
     postId: number;
@@ -28,10 +30,12 @@ const CommentNew: React.FC<CommentNewProps> = ({ postId, uploadComment }) => {
         router.push(`${AppRoute.POSTS}${postId}`);
     };
 
+    const isCommentValid = comment.length > MIN && comment.length < MAX_COMMENT;
+
     return (
         <CommentNewContainer onSubmit={handleSubmit}>
-            <TextArea onChange={handleInput} value={comment} />
-            <Button text={`Comment`} />
+            <TextArea onChange={handleInput} value={comment} isComment={true} />
+            <Button text={`Comment`} isValid={isCommentValid} />
         </CommentNewContainer>
     );
 };

@@ -14,13 +14,14 @@ const TextInput: React.FC<TextInputProps> = ({ onChange, value }) => {
                 value={value}
                 name="title"
                 id="title"
-                placeholder={`Write your title here`}
+                placeholder={`Write your title here (5-100 symbols)`}
             />
         </div>
     );
 };
 
 const StyledTextInput = styled.input`
+    width: 50%;
     padding: 7px;
     margin: 0 auto;
     margin-bottom: 10px;

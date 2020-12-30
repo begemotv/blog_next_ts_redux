@@ -1,14 +1,16 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import Button from '../../components/button/button';
 import Layout from '../../components/layout/layout';
 import TextArea from '../../components/text-area/text-area';
 import TextInput from '../../components/text-input/text-input';
-import { AppRoute } from '../../const';
+import { AppRoute, TextLength } from '../../const';
 import { uploadPostThunk } from '../../store/api-actions';
-import { useRouter } from 'next/router';
+
+const { MIN, MAX_TITLE } = TextLength;
 
 interface NewPostProps {
     uploadPost: (title: string, body: string) => void;
@@ -33,13 +35,15 @@ const NewPost: React.FC<NewPostProps> = ({ uploadPost }) => {
         router.push(AppRoute.HOME);
     };
 
+    const isPostValid = body.length > MIN && title.length > MIN && title.length < MAX_TITLE;
+
     return (
         <Layout pageTitle="New Post" isNewPost={true}>
             <StyledFormContainer>
                 <StyledForm onSubmit={handleSubmit}>
                     <TextInput onChange={handleTitleInput} value={title} />
                     <TextArea onChange={handleBodyInput} value={body} />
-                    <Button text={'Post'} />
+                    <Button text={'Post'} isValid={isPostValid} />
                 </StyledForm>
             </StyledFormContainer>
         </Layout>

@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ isNewPost = false }) => {
 };
 
 const StyledHeader = styled.header`
-    padding: 10px;
+    padding: 15px;
     border-bottom: 2px solid lightgray;
 `;
 
