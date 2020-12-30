@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { ApiRoute } from '../const';
-import {ActivePostType} from '../store/types';
 
 const BACKEND_URL = `https://simple-blog-api.crew.red`;
 const REQUEST_TIMEOUT = 5000;
